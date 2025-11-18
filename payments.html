@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Payments — Yesh Automobiles</title>
+  <style>
+    body{font-family:system-ui,Arial,Helvetica,sans-serif;margin:0;padding:28px;background:#f7f8fb;color:#111}
+    header{display:flex;justify-content:space-between;align-items:center}
+    .container{max-width:720px;margin-top:20px;background:#fff;padding:18px;border-radius:10px;box-shadow:0 6px 18px rgba(14,30,37,.06)}
+    .summary{border:1px solid #eee;padding:12px;border-radius:8px;margin-bottom:12px}
+    label{display:block;margin-top:10px}
+    input{width:100%;padding:8px;margin-top:6px;border:1px solid #ddd;border-radius:6px}
+    button{margin-top:12px;padding:10px 14px;border-radius:8px;border:0;background:#0b66d0;color:#fff;cursor:pointer}
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Payments</h1>
+    <nav><a href="products.html">Back to Products</a></nav>
+  </header>
+
+  <main>
+    <div class="container">
+      <div id="summary" class="summary">Loading product details...</div>
+
+      <!-- Simple demo payment form (DO NOT use for real payments) -->
+      <form id="paymentForm" autocomplete="off">
+        <label>Cardholder name
+          <input type="text" name="name" required />
+        </label>
+
+        <label>Card number
+          <input type="text" name="card" maxlength="19" placeholder="4111 1111 1111 1111" required />
+        </label>
+
+        <label>Expiry (MM/YY)
+          <input type="text" name="expiry" maxlength="5" placeholder="MM/YY" required />
+        </label>
+
+        <label>CVV
+          <input type="text" name="cvv" maxlength="4" required />
+        </label>
+
+        <button type="submit">Pay Now</button>
+      </form>
+    </div>
+  </main>
+
+  <script>
+    // helper to read query params
+    function qs(key) {
+      return new URLSearchParams(window.location.search).get(key);
+    }
+
+    var product = qs('product') || 'Unknown product';
+    var price = qs('price') || '0';
+
+    // show product summary
+    document.getElementById('summary').innerHTML =
+      '<strong>Product:</strong> ' + decodeURIComponent(product) +
+      ' <br><strong>Amount:</strong> ₹' + price;
+
+    // on submit -> simulate payment and redirect to thankyou with orderId
+    document.getElementById('paymentForm').addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      // generate a simple order id
+      var orderId = 'ORD' + Date.now();
+
+      // NOTE: in a real integration you'd call your server/payment gateway here.
+      // For this demo we redirect to thankyou page carrying product/price/orderId.
+      var params = new URLSearchParams({
+        product: product,
+        price: price,
+        orderId: orderId
+      });
+
+      // small visual delay to mimic processing
+      setTimeout(function () {
+        window.location.href = 'thankyou.html?' + params.toString();
+      }, 600);
+    });
+  </script>
+</body>
+</html>
