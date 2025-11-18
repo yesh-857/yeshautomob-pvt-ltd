@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Products — Yesh Automobiles</title>
+  <style>
+    body{font-family:system-ui,Arial,Helvetica,sans-serif;margin:0;padding:28px;background:#fff;color:#111}
+    header{display:flex;justify-content:space-between;align-items:center}
+    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;margin-top:20px}
+    .card{border:1px solid #eee;padding:14px;border-radius:10px}
+    .price{font-weight:700;margin-top:8px}
+    .buy{display:inline-block;margin-top:12px;padding:8px 12px;background:#0b66d0;color:#fff;border-radius:8px;text-decoration:none}
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Products</h1>
+    <nav><a href="index.html">Home</a></nav>
+  </header>
+
+  <main>
+    <p>Select a product to proceed to the payment page.</p>
+
+    <div class="grid">
+      <div class="card">
+        <h3>Motorbike A</h3>
+        <p>High performance commuter bike.</p>
+        <div class="price">₹ 75,000</div>
+        <!-- link passes product name & price via query string -->
+        <a class="buy" href="payments.html?product=Motorbike%20A&price=75000">Buy Now</a>
+      </div>
+
+      <div class="card">
+        <h3>Scooter B</h3>
+        <p>Lightweight city scooter.</p>
+        <div class="price">₹ 45,000</div>
+        <a class="buy" href="payments.html?product=Scooter%20B&price=45000">Buy Now</a>
+      </div>
+
+      <div class="card">
+        <h3>Helmet C</h3>
+        <p>Safety helmet with visor.</p>
+        <div class="price">₹ 2,500</div>
+        <a class="buy" href="payments.html?product=Helmet%20C&price=2500">Buy Now</a>
+      </div>
+    </div>
+  </main>
+</body>
+</html>
