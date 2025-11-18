@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Thank You — Yesh Automobiles</title>
+  <style>
+    body{font-family:system-ui,Arial,Helvetica,sans-serif;margin:0;padding:28px;background:#eef4ff;color:#111}
+    header{display:flex;justify-content:space-between;align-items:center}
+    .card{max-width:720px;margin-top:20px;background:#fff;padding:18px;border-radius:10px;box-shadow:0 6px 18px rgba(14,30,37,.06)}
+    .info{border:1px solid #eee;padding:12px;border-radius:8px}
+    .btn{display:inline-block;margin-top:12px;padding:8px 12px;background:#0b66d0;color:#fff;border-radius:8px;text-decoration:none}
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Thank you!</h1>
+    <nav><a href="index.html">Home</a></nav>
+  </header>
+
+  <main>
+    <div class="card">
+      <p>We received your order. Below are the details:</p>
+      <div id="info" class="info">Loading order info...</div>
+
+      <p><a class="btn" href="index.html">Return to Home</a></p>
+    </div>
+  </main>
+
+  <script>
+    function qs(key) {
+      return new URLSearchParams(window.location.search).get(key);
+    }
+
+    var product = qs('product') || 'Unknown';
+    var price = qs('price') || '0';
+    var orderId = qs('orderId') || '—';
+
+    document.getElementById('info').innerHTML =
+      '<strong>Order ID:</strong> ' + orderId + '<br>' +
+      '<strong>Product:</strong> ' + decodeURIComponent(product) + '<br>' +
+      '<strong>Amount:</strong> ₹' + price;
+  </script>
+</body>
+</html>
